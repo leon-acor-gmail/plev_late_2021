@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<title>CARAN - PLEV</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="images/favicon.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="styles/master.css">
+<link rel="stylesheet" href="styles/index.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fauna+One&family=Palanquin+Dark&family=Sulphur+Point:wght@300&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+<body class="bgColor">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="scripts/jquery.md5.js"></script>
+  <script src="scripts/master.js"></script>
+  <script>
+    $(document).ready(function(){
+      var objJsMaster = new jsMaster();
+      var myIndex = 0;
+      objJsMaster.imgSlideListPopulayte($('#divImgSlideListPopulayte'),9,'slide_img','Centro Comunitario - Dionisio Chávez - Acapulco, Gro.');
+      carousel();
+
+      $('#btnLogin').click(function(a){
+        b = document.getElementsByTagName('form')[0];
+        if(b.checkValidity())
+        {
+          var strData = objJsMaster.setBase64JSONstringLogin($('#txtData1').val(),$.md5($('#txtData2').val()));
+          $.get("../plev2/models/modLogin.php",{strData:strData},function(strEcho){
+            strEcho = atob(strEcho)
+            objJson = JSON.parse(strEcho);
+            if(objJson.code == '200'){
+              window.location.href = objJson.desc;
+            }
+            else if(objJson.code == '201'){
+              alert(objJson.desc);
+            }
+          });
+          a.preventDefault();
+        }
+      });
+
+
+      function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) {myIndex = 1}
+        x[myIndex-1].style.display = "block";
+        setTimeout(carousel, 4000);
+      }
+    });
+
+
+  </script>
+  <div class="w3-row">
+    <div class="w3-white w3-container w3-third divPanelSplit">
+      <header class="w3-padding w3-center">
+        <img class="imgLogo" src="images/logo_caran.png" alt="logo caran texto" />
+      </header>
+      <section class="w3-padding">
+        <div class="w3-center">
+          <p class="font4 w3-xxlarge">Plataforma de Evaluación de Proyectos</p>
+        </div>
+        <p class="w3-xlarge font2">Ingresa tus credenciales</p>
+        <form>
+          <div class="w3-margin">
+            <label for="txtData1">Escribe tu correo</label>
+            <input class="w3-input" type="email" id="txtData1" placeholder="micuenta@micorreo.com" maxlength="45" required>
+          </div>
+          <div class="w3-margin">
+            <label for="txtData2">Escribe tu contraseña</label>
+            <input class="w3-input" type="password" id="txtData2" placeholder="**************" minlength="8" maxlength="24" required>
+          </div>
+          <div class="w3-margin">
+            <button type="submit" id="btnLogin" class="w3-button w3-btnColor1">Entrar</button>
+            <a class="w3-right aTag" href="">Recuperar contraseña</a>
+          </div>
+        </form>
+      </section>
+      <footer class="divFooter">
+        <p class="font1">Todos los derechos reservados - caran.com.mx 2021</p>
+      </footer>
+    </div>
+    <div class="w3-container w3-twothird">
+      <section id="divSlides" class="divSlides w3-hide-small">
+        <div id="divImgSlideListPopulayte"></div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

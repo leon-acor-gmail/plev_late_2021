@@ -1,0 +1,15 @@
+.divPanelSplit{
+  position:fixed;
+  height:100%;
+}
+.mySlides {display: none}
+.divSlides{
+  position: absolute;
+  width:50%;
+  top:11%;
+  left:42%;
+}
+.imgSlider{
+  width:100%;
+  height:auto;
+}

@@ -1,0 +1,37 @@
+body, html {
+  height: 100%
+}
+.font1{
+  font-family: 'Fauna One', serif;
+}
+.font2{
+  font-family: 'Sulphur Point', sans-serif;
+}
+.font3{
+  font-family: 'Palanquin Dark', sans-serif;
+}
+.font4{
+  font-family: 'Ubuntu', sans-serif;
+}
+.bgColor{
+  background-color:#00437c;
+}
+.txtColor{
+  color:#00437c;
+}
+.imgLogo{
+  width:75%;
+  height:auto;
+}
+.divFooter{
+  position: fixed;
+  bottom: 0;
+}
+.w3-btnColor1,.w3-hover-btnColor1:hover{color:#fff!important;background-color:#00437c!important}
+.aTag{
+  text-decoration:none;
+  color:#00437c;
+}
+.aTag:hover{
+  color:#9c9faa;
+}
